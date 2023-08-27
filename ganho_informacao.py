@@ -73,7 +73,7 @@ def ganho_informacao(df_dados:pd.DataFrame, nom_col_classe:str, nom_atributo:str
 
     #atenção nessa linha abaixo, qual é o valor que temos que colocar em None?
     #o que precisamos contabilizar dessa vez?
-    ser_count_col = df_dados[None].value_counts()
+    ser_count_col = df_dados[nom_atributo].value_counts()
 
     val_entropia_y = entropia(df_dados,nom_col_classe)
 
@@ -81,7 +81,7 @@ def ganho_informacao(df_dados:pd.DataFrame, nom_col_classe:str, nom_atributo:str
     val_info_gain = 0
     for val_atr,count_atr in ser_count_col.items():
         val_prob = count_atr/num_total
-        val_info_gain += None
+        val_info_gain += val_prob*ganho_informacao_condicional(df_dados,val_entropia_y,nom_col_classe,nom_atributo,val_atr)
 
         #print(f"GI({nom_col_classe}| {nom_atributo}={val_atr}) = {val_info_gain}")
 
